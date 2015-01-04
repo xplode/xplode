@@ -1,0 +1,31 @@
+<div class="navbar navbar-fixed" role="navigation">
+  <div class="container">
+<div class="row">
+  <div class="col-sm-3">
+    {% if page.previous.url %}
+      <ul class="pager">
+        <li class="previous">
+          <a href="{{ page.previous.url }}">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span> {{ page.previous.title }}
+          </a>
+        </li>
+      </ul>
+    {% endif %}
+  </div><!-- col -->
+  <div class="col-sm-6">
+    <h1 class="text-center">{{ page.title }}</h1>
+  </div>
+  <div class="col-sm-3">
+    {% if page.next.url %}
+     <ul class="pager">
+          <li class="next">
+            <a href="{{ page.next.url }}">
+              {{ page.next.title }} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            </a>
+          </li>
+        </ul>
+      {% endif %}
+    </div><!-- col -->
+</div><!-- row -->
+  </div>
+</div>

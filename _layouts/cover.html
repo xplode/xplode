@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Software and stuffs">
+    <meta name="author" content="Israel Maloney">
+    <link rel="shortcut icon" href="/ico/favicon.ico">
+    <title>Braddah Iz</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/cover.css" rel="stylesheet">
+ 
+   {% include ie_shims.html %}
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Braddah Iz</h3>
+            </div>
+          </div>
+          {{ content }}
+        </div>
+
+      </div>
+
+    </div>
+   {% include bootstrap_default_javascript.html %}
+  </body>
+</html>

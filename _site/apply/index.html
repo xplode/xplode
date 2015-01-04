@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Braddah Iz</title>
+    <meta name="viewport" content="width=device-width">
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/theme.css" rel="stylesheet">
+    <!-- Custom styles for this blog -->
+    <link href="/css/lace.css" rel="stylesheet">
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery.min.js"></script>
+
+    <script>
+
+/* The good stuff begins here */
+$(document).ready(function(){
+    $('img').hide().one("load",function(){
+        $(this).fadeIn(500);
+    }).each(function(){
+        if(this.complete) $(this).trigger("load");
+    });
+});
+
+
+/*global jQuery */
+/*!
+* FitText.js 1.2
+*
+* Copyright 2011, Dave Rupert http://daverupert.com
+* Released under the WTFPL license
+* http://sam.zoy.org/wtfpl/
+*
+* Date: Thu May 05 14:23:00 2011 -0600
+*/
+
+(function( $ ){
+
+  $.fn.fitText = function( kompressor, options ) {
+
+    // Setup options
+    var compressor = kompressor || 1,
+        settings = $.extend({
+          'minFontSize' : Number.NEGATIVE_INFINITY,
+          'maxFontSize' : Number.POSITIVE_INFINITY
+        }, options);
+
+    return this.each(function(){
+
+      // Store the object
+      var $this = $(this);
+
+      // Resizer() resizes items based on the object width divided by the compressor * 10
+      var resizer = function () {
+        $this.css('font-size', Math.max(Math.min($this.width() / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)));
+      };
+
+      // Call once to set.
+      resizer();
+
+      // Call on resize. Opera debounces their resize by default.
+      $(window).on('resize.fittext orientationchange.fittext', resizer);
+
+    });
+
+  };
+
+})( jQuery );
+
+$(document).ready(function(){
+  jQuery("#responsive_headline").fitText(1.2, { minFontSize: '20px', maxFontSize: '40px' });
+  jQuery("#booger").fitText(0.5, { minFontSize: '20px', maxFontSize: '400px' });
+});
+</script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->   
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></scrip  t>      
+<![endif]-->
+
+
+  </head>
+  <body>
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand active" href="/">www.BraddahIz.com</a>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container theme-showcase" role="main">
+<div class="jumbotron">
+  <p>Resumes can be submitted to <strong>jobs@braddahiz.com</strong>.  If you are applying for a specific job, please put the Job ID Number in the title of the email.</p>
+</div>
+
+    </div>
+  </body>
+</html>
