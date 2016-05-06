@@ -1,3 +1,4 @@
-name: Your New Jekyll Site
+name: blog.xplode.io 
 markdown: redcarpet
 pygments: true
+excerpt_separator: ""
