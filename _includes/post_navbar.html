@@ -1,8 +1,8 @@
 <!-- Fixed navbar -->
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top navbar-blog" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand active" href="/">www.BraddahIz.com</a>
+      <a class="navbar-brand brand-blog active" href="/">blog.xplode.io</a>
     </div>
   </div>
 </div>
@@ -19,8 +19,8 @@
       </ul>
       {% endif %}
     </div><!-- col -->
-    <div class="col-sm-6">
-      <h1 class="text-center">{{ page.title }}</h1>
+    <div class="col-sm-6 post-title-container">
+      <span class="post-title">{{ page.title }}</span>
     </div>
     <div class="col-sm-3">
       {% if page.next.url %}
@@ -34,4 +34,4 @@
       {% endif %}
     </div><!-- col -->
   </div><!-- row -->
-</div> 
+</div>

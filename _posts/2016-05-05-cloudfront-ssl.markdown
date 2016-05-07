@@ -2,10 +2,7 @@
 layout: post
 title:  "Upload x509 certificate for use in CloudFront"
 date:   2016-05-05
-thumbnail: gtg_the-crew.png 
-image: gtg_sun-over-shoulder.png 
-categories: x509 cloudfront cdn aws 
-tags: top_level_post
+tags: x509 cloudfront cdn aws 
 ---
 
 CloudFront allows you to upload x509 certs to IAM for use by the CloudFront

@@ -1,0 +1,90 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+
+body {
+  background-color: #FFFBF8;
+}
+
+a {
+  color: #555;
+}
+
+p {
+  color: #333;
+}
+
+.index-post-container {
+  display: inline-flex;
+  padding: 4px;
+}
+.index-post {
+  border: 2px solid #A8A19C;
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.index-tags {
+  font-family: Ubuntu;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.index-title {
+  font-family: Verdana;
+  font-size: 1.0em;
+  font-weight: bold;
+  color: #555;
+}
+
+
+.post-title {
+  font-family: Ubuntu;
+  font-size: 2.4em;
+  color: #555;
+}
+
+.post-title-container {
+  text-align: center;
+}
+
+.navbar-blog {
+  background-image: linear-gradient(to bottom,#3c3c3c 0,#777 100%);
+  border-color: #555;
+}
+
+.brand-blog {
+  color: #C5C4C3;
+  font-size: 1.4em;
+  font-family: Ubuntu;
+}
+
+/* Palette URL: http://paletton.com/#uid=20o0a1k0foI0VBv0Znm2pl64Vk4k5m1oj57TdG4ugc3fnr3M */
+
+/* As hex codes */
+
+.color-primary-0 { color: #C5C4C3 }	/* Main Primary color */
+.color-primary-1 { color: #FFFBF8 }
+.color-primary-2 { color: #BAB7B4 }
+.color-primary-3 { color: #A8A19C }
+.color-primary-4 { color: #A09187 }
+
+.color-complement-0 { color: #060707 }	/* Main Complement color */
+.color-complement-1 { color: #102823 }
+.color-complement-2 { color: #0D1715 }
+.color-complement-3 { color: #08100F }
+.color-complement-4 { color: #051310 }
+
+
+
+/* As RGBa codes */
+
+.rgba-primary-0 { color: rgba(197,196,195,1) }	/* Main Primary color */
+.rgba-primary-1 { color: rgba(255,251,248,1) }
+.rgba-primary-2 { color: rgba(186,183,180,1) }
+.rgba-primary-3 { color: rgba(168,161,156,1) }
+.rgba-primary-4 { color: rgba(160,145,135,1) }
+
+.rgba-complement-0 { color: rgba(  6,  7,  7,1) }	/* Main Complement color */
+.rgba-complement-1 { color: rgba( 16, 40, 35,1) }
+.rgba-complement-2 { color: rgba( 13, 23, 21,1) }
+.rgba-complement-3 { color: rgba(  8, 16, 15,1) }
+.rgba-complement-4 { color: rgba(  5, 19, 16,1) }

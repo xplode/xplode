@@ -1,27 +1,29 @@
 ---
-layout: default 
-title: Braddah Iz 
+layout: default
+title: xplode.io
 ---
 <div id="main_container" class="container">
 {% assign counter = 0 %}
 {% for post in site.posts %}
-  {% if post.tags contains 'top_level_post' %}
-    {% capture mod %}{{ (counter) | modulo:3 }}{% endcapture %} 
-    {% if mod == '0' %}
-    <div id="row" class="row">
-    {% endif %}
-      <div id='myid' class="col-md-4">
-        <a href="{{ post.url }}"><div id='darken' class="darken"><img id="preload" src="{{ site.url }}/images/{{ post.thumbnail }}" alt="{{ post.title}}" class="img-rounded img-responsive">
-        <h1 id="headline_{{counter}}" class="image-overlay">{{ post.title }}</h1></div></a>
-  <script>
-  $(document).ready(function(){
-  jQuery("#headline_{{counter}}").fitText(0.7, { minFontSize: '20px', maxFontSize: '400px' });});
-  </script>
-      </div>
-    {% if mod == '2' or forloop.last %}
-    </div> <!-- end row -->
-    {% endif %}
-    {% capture counter%}{{ (counter) | plus:1 }}{% endcapture %} 
+  {% capture mod %}{{ (counter) | modulo:4 }}{% endcapture %}
+  {% if mod == '0' %}
+  <div class="row">
   {% endif %}
+    <div class="index-post-container">
+      <div class="index-post button btn" onclick="window.location='{{ post.url }}'">
+        <div>
+          <span class="index-title">{{ post.title}}</span>
+        </div>
+        <div class="index-tags">
+         {% for tag in post.tags %}
+           {{ tag }}
+         {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% if mod == '2' or forloop.last %}
+  </div> <!-- end row -->
+  {% endif %}
+  {% capture counter%}{{ (counter) | plus:1 }}{% endcapture %}
 {% endfor %}
 </div>
