@@ -5,7 +5,7 @@ title: xplode.io
 <div id="main_container" class="container">
 {% assign counter = 0 %}
 {% for post in site.posts %}
-  {% capture mod %}{{ (counter) | modulo:4 }}{% endcapture %}
+  {% capture mod %}{{ (counter) | modulo:3 }}{% endcapture %}
   {% if mod == '0' %}
   <div class="row">
   {% endif %}
