@@ -24,17 +24,17 @@ $ aws iam  list-server-certificates
 }
 
 # The command signature to upload a new cert is:
-aws iam upload-server-certificate --server-certificate-name <name to assign to cert> --certificate-body file://cert.pem --private-key file://key.pem --certificate-chain file://chain.pem
+aws iam upload-server-certificate --path /cloudfront/ --server-certificate-name <name to assign to cert> --certificate-body file://cert.pem --private-key file://key.pem --certificate-chain file://chain.pem
 
 # Executing the command returns the new cert json. 
-$ aws iam upload-server-certificate --server-certificate-name star.xplode.io --certificate-body file://star.xplode.io.crt --private-key file://star.xplode.io.key --certificate-chain file://star.xplode.io.ca-bundle
+$ aws iam upload-server-certificate --path /cloudfront/ --server-certificate-name star.xplode.io --certificate-body file://star.xplode.io.crt --private-key file://star.xplode.io.key --certificate-chain file://star.xplode.io.ca-bundle
 
 {
       "ServerCertificateMetadata": {   
         "ServerCertificateId": "BBBBBBBBBBBBBBBBBBBBB", 
         "ServerCertificateName": "star.xplode.io",
         "Expiration": "2019-05-27T20:19:59Z",
-        "Path": "/", 
+        "Path": "/cloudfront/", 
         "Arn": "arn:aws:iam::111111111111:server-certificate/star.xplode.io",
         "UploadDate": "2016-05-05T18:52:59.054Z"  
       }
@@ -55,7 +55,7 @@ $ aws iam  list-server-certificates{
         "ServerCertificateId": "BBBBBBBBBBBBBBBBBBBBB", 
         "ServerCertificateName": "star.xplode.io",
         "Expiration": "2019-05-27T20:19:59Z",
-        "Path": "/", 
+        "Path": "/cloudfront/", 
         "Arn": "arn:aws:iam::111111111111:server-certificate/star.xplode.io",
         "UploadDate": "2016-05-05T18:52:59.054Z"  
       }
@@ -73,3 +73,6 @@ aws command line tool is really cool.
 {% highlight bash %}
 aws --profile development iam  list-server-certificates
 {% endhighlight %}
+
+Resources
+<a href='https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs_manage.html'>https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs_manage.html</a>
