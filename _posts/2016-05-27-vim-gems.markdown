@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "Vim gems"
+date:   2016-05-27
+tags: vim gems 
+---
+<h4>Disable Syntax highlighting</h4>
+
+In vim
+{% highlight bash %}
+:syntax off
+
+:syntax on
+{% endhighlight %}
+
+In vimrc
+{% highlight bash %}
+syntax off
+syntax on 
+{% endhighlight %}

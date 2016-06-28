@@ -1,0 +1,119 @@
+---
+layout: post
+title:  "File integrity monitoring"
+date:   2016-05-26
+tags: security samhain
+---
+<h3>Getting started with samhain</h3>
+<br>
+<h4>Installation</h4>
+{% highlight bash %}
+$ sudo apt-get update
+$ sudo apt-get install samhain -y
+{% endhighlight %}
+<br>
+<h4>Configuring samhain</h4>
+{% highlight bash %}
+$ sudo vi /etc/samhain/samhainrc
+~~~
+# Make whatever changes you need to and then make sure to restart samhain
+~~~
+{% endhighlight %}
+<br>
+<h4>Initializing the baseline database</h4>
+You generally won't need to do this as it is initialized on install.
+Note:  The baseline database is located at  /var/state/samhain/samhain_file 
+{% highlight bash %}
+sudo samhain -t init 
+{% endhighlight %}
+<br>
+<h4>Starting samhain</h4>
+{% highlight bash %}
+sudo samhain
+{% endhighlight %}
+<br>
+<h4>Stopping samhain, reinitializing the database and starting it back up</h4>
+This is the most reliable way to accomplish the task.
+{% highlight bash %}
+sudo killall samhain
+sudo rm /var/state/samhain/samhain_file
+sudo samhain -t init
+sudo samhain
+{% endhighlight %}
+<br>
+<h4>Poking around samhain</h4> 
+Lets test samhain to get an idea of how it works.
+We'll add a file to the the samhain configuration such that any access or changes to the
+file will be logged, then we'll change the file and see how samhain logs these occurances.
+{% highlight bash %}
+$ sudo vi /etc/samhain/samhainrc
+
+~~~
+[IgnoreNone]
+# All modifications to these files, including access time, but excluding ctime will be reported.
+file=/tmp/my_safe_file
+....
+[Misc]
+# Interval in seconds that samhain will check for file changes and log the results.
+SetFileCheckTime = 30
+~~~
+{% endhighlight %}
+<br>
+<h4>Create the safe file</h4>
+This is the file that we specified in the configuration under IgnoreNone.
+{% highlight bash %}
+$ touch /tmp/my_safe_file
+{% endhighlight %}
+<br>
+<h4>Pickup your configuration changes</h4>
+{% highlight bash %}
+$ sudo service samhain stop
+$ sudo service samhain start
+{% endhighlight %}
+<br>
+The POLICY_ADDED message is the initial log message for a file being tracked in samhain.
+{% highlight bash %}
+INFO   :  [2016-05-27T16:29:29+0000] msg=<Checking     [IgnoreNone]>, path=</tmp/my_safe_file>
+814233853DB6A9FF8D3C13057629C083CCFE02FCAD70BD5C
+
+CRIT   :  [2016-05-27T16:29:29+0000] msg=<POLICY ADDED>, path=</tmp/my_safe_file>, mode_new=<-rw-r--r-->, attr_new=<------------>, imode_new=<33188>, iattr_new=<524288>, hardlinks_new=<1>, idevice_new=<0>, inode_new=<29726>, dev_new=<202,1>, owner_new=<root>, iowner_new=<0>, group_new=<root>, igroup_new=<0>, size_old=<0>, size_new=<0>, ctime_new=<[2016-05-27T16:28:02]>, atime_new=<[2016-05-27T16:28:02]>, mtime_new=<[2016-05-27T16:28:02]>, chksum_new=<24F0130C63AC933216166E76B1BB925FF373DE2D49584E7A>
+C1341267A9E8014B2478BD0055670A9DE43AFA18A9641DCD
+{% endhighlight %}<br>
+
+Checks where the file is unchanged look like:
+{% highlight bash %}
+INFO   :  [2016-05-27T16:29:41+0000] msg=<Checking     [IgnoreNone]>, path=</tmp/my_safe_file>
+23D717F0F4A4B912BD0E038D9C55086F8B02BCFCB18FE452
+{% endhighlight %}<br>
+
+Now let's access the safe file and see how samhain reports this.
+{% highlight bash %}
+$ vi /tmp/my_safe_file
+{% endhighlight %}<br>
+
+The corresponding samhain log for detecting access is:
+{% highlight bash %}
+CRIT   :  [2016-05-27T16:30:49+0000] msg=<POLICY [IgnoreNone] --------T->, path=</tmp/my_safe_file>, atime_old=<[2016-05-27T16:28:02]>, atime_new=<[2016-05-27T16:30:46]>,
+D4E3DFEF90E6EAC9BD4648FEEB5455A4F14818E6A842BA01
+{% endhighlight %}<br>
+
+While I've still got the my_safe_file open, I modified it by adding a line and saving
+the file.  The corresponding samhain log for detecting modification is:
+{% highlight bash %}
+CRIT   :  [2016-05-27T16:31:35+0000] msg=<POLICY [IgnoreNone] C-------TS>, path=</tmp/my_safe_file>, size_old=<0>, size_new=<8>, mtime_old=<[2016-05-27T16:28:02]>, mtime_new=<[2016-05-27T16:31:32]>, chksum_old=<24F0130C63AC933216166E76B1BB925FF373DE2D49584E7A>, chksum_new=<F2C8BBB8CF84465047A5BFF0E070D229ECEED449A8B875D9>,
+111A1505E9CC4E62A361CDD658DC173F1E83E86B646E6EEF
+{% endhighlight %}<br>
+
+
+<h4>Codes in messages about reported files</h4>
+As of version 1.8.2, reports about modified files include a short code in the message field to describe
+which properties have been modified. The codes are: 'C' for 'checksum', 'L' for (soft) 'link', 'D' for
+'device number', 'I' for 'inode', 'H' for (number of) 'hardlinks', 'M' for 'mode', 'U' for 'user' (owner), 'G'
+for 'group' (owner), 'T' for 'time' (any), and finally 'S' for 'size'.
+As an example, 'C--I----TS' would indicate that a file has been replaced by one with different checksum,
+inode, timestamp, and size, but (e.g.) same mode (type and access permissions) and same ownership.
+
+<h3>References</h3>
+http://www.la-samhna.de/samhain/manual/filedef.html
+http://la-samhna.de/samhain/MANUAL-2_4.pdf
+http://manpages.ubuntu.com/manpages/precise/man8/samhain.8.html
