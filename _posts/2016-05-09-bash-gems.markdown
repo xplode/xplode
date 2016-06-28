@@ -4,11 +4,6 @@ title:  "Bash gems"
 date:   2016-05-09
 tags: bash gems 
 ---
-<small>
-<strong>*gems*</strong>
-little cool gems.
-</small>
-
 {% highlight bash %}
 # output a sequence of characters
 $ seq 1 10
@@ -22,4 +17,17 @@ $ seq 1 10
 8
 9
 10
+{% endhighlight %}<br>
+
+The bash if conditional evaluates a command and executes the true path for
+exit status 0.
+{% highlight bash %}
+#!/bin/bash
+
+if this is my command; then
+  # true path
+else
+  # false path
+fi
 {% endhighlight %}
+

@@ -2,11 +2,8 @@
 layout: post
 title:  "Quick and dirty server management"
 date:   2016-05-07
-tags: bash ssh mysql sans-google 
+tags: bash ssh mysql
 ---
-<small><strong>*sans google*</strong>
-A skill I need to be able to quickly execute without looking up the specifics. </small>
-
 Execute some code against a set of servers whose ip addresses are stored
  in a mysql database.
 {% highlight bash %}

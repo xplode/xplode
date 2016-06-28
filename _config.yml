@@ -2,3 +2,4 @@ name: blog.xplode.io
 markdown: redcarpet
 pygments: true
 excerpt_separator: ""
+port: 3000
