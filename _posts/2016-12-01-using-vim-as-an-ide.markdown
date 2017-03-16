@@ -1,19 +1,29 @@
 ---
 layout: post
 title:  "Using vim as an IDE on Mac"
-date:   
-tags: 
+date: 2016-12-01  
+tags: vim
 ---
 
+# Overview
+<p>I've tried out a few IDE's over the years, but inevitably end up back at the 
+terminal using vim.  Finally I figured out that I didn't want an IDE that
+provided VIM emulation.  What I really wanted was for VIM to behave like an
+IDE when I wanted it to.</p>
+<p>
+I'm giving it a shot on my Mac, and if things go well I'll do the same on my
+linux workstations and do a complete writeup.  <b>Right now this post just
+serves as an in progress scratchpad</b>.
+</p>
+
 # What to install, applications, vim plugins and supporting software.
-
 Make sure you have the latest version of vim installed via homebrew, I'm using version 8
-brew install vim, although I use macvim.
-
+brew install vim, I also use macvim.
 
 cd ~/Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20for%20Powerline%20Nerd%20Font%20Complete.otf
 After doing this you will need to setup iterm to use this font.
 
+Here are some plugins I've installed, but my vimrc is really the authority.
 git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
 git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
 git clone git@github.com:tiagofumo/vim-nerdtree-syntax-highlight.git ~/.vim/bundle/vim-nerdtree-syntax-highlight
@@ -27,8 +37,8 @@ npm install htmltidy -g
 npm install -g tslint typescript
 npm install -g jshint
 
-# Install youcompleteme for code completion.  This requires the installation of
-# macvim, clang, java, eclipse, eclim.
+<b>Install youcompleteme for code completion.  This requires the installation of
+macvim, clang, java, eclipse, eclim.</b>
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 brew update
 brew install macvim

@@ -1,5 +1,5 @@
 name: blog.xplode.io 
 markdown: redcarpet
-pygments: true
+highligher: true
 excerpt_separator: ""
 port: 3000
